@@ -104,10 +104,21 @@ function oddEventListeners() {
   });
 }
 
+var button1 = document.getElementById('b1');
+var button2 = document.getElementById('b2');
+
+button1.addEventListener('click', function(evt){
+  lineWidth = 1;
+});
+button2.addEventListener('click', function(evt){
+  lineWidth = 5;
+});
+
 var lineStart; var lineStop;
+var lineWidth;
 
 function strokeStart() {
-  ctx.lineWidth = 1;
+  ctx.lineWidth = lineWidth;
   ctx.strokeStyle = '#000000';
   ctx.lineJoin = 'round';
 

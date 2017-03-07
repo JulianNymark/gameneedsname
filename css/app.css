@@ -7,19 +7,39 @@ html, body {
     height: 100%;
 }
 
-canvas, .input-catcher {
-    display: block;
-    margin: auto;
-
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    cursor: crosshair;
-}
-
 h1 {
     color: white;
+}
+
+#thecontainer {
+    display: flex;
+    flex-flow: column nowrap;
+    margin: auto;
+}
+
+#thecontainer > * {
+    display: block;
+    position: relative;
+    margin: auto;
+
+    justify-content: center;
+}
+
+#thecontainer .input-catcher {
+    position: absolute;
+}
+
+#buttoncontainer {
+    display: flex;
+    flex-flow: row nowrap
+}
+
+#canvascontainer {
+    display: flex;
+    flex-flow: column nowrap
+}
+
+canvas, .input-catcher {
+    display: block;
+    cursor: crosshair;
 }

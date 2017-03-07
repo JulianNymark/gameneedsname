@@ -11,18 +11,21 @@ var requestAnimFrame = (function(){
          };
 })();
 
+// get the container
+var canvascontainer = document.getElementById('canvascontainer');
+
 // Create the canvas
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
 canvas.width = 512;
 canvas.height = 480;
-document.body.appendChild(canvas);
+canvascontainer.insertBefore(canvas, canvascontainer.childNodes[0]);
 
 // 'input catcher' div (invisible & sits on top of canvas)
 var inputCatcher = document.createElement("div");
 inputCatcher.setAttribute("style","width:512px; height:480px;");
 inputCatcher.setAttribute("class","input-catcher");
-document.body.appendChild(inputCatcher);
+canvascontainer.insertBefore(inputCatcher, canvascontainer.childNodes[1]);
 
 addInputEventListeners(inputCatcher);
 oddEventListeners();
