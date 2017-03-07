@@ -24,20 +24,7 @@ inputCatcher.setAttribute("style","width:512px; height:480px;");
 inputCatcher.setAttribute("class","input-catcher");
 document.body.appendChild(inputCatcher);
 
-inputCatcher.addEventListener('mousemove', function(evt) {
-  var mousePos = getMousePos(this, evt);
-  var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
-  brush.pos = [mousePos.x, mousePos.y];
-}, false);
-
-inputCatcher.addEventListener('mousedown', ()=>{
-  console.log('brushdown');
-  brush.active = true;
-});
-inputCatcher.addEventListener('mouseup', ()=>{
-  console.log('brushup');
-  brush.active = false;
-});
+addInputEventListeners(inputCatcher);
 
 // the brush 'entity' :::DDD
 var brush = {
@@ -81,7 +68,7 @@ function update(dt) {
 // Draw everything
 function render() {
   if (brush.active) {
-    renderEntity(brush);
+    //renderEntity(brush);
   }
 };
 
