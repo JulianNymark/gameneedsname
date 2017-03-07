@@ -32,38 +32,57 @@ function getMousePos(withinThing, evt) {
   };
 }
 
+var debugVerbosity = 1;
+
+var debug = {
+  log : function(stringy) {
+    if (debugVerbosity == 1){
+      console.log(stringy);
+    }
+  }
+}
+
 function addInputEventListeners(thing) {
   // mouse
   thing.addEventListener('mousemove', function(evt) {
+    debug.log('inputCatcher.mousemove');
     var mousePos = getMousePos(thing, evt);
     brush.pos = [mousePos.x, mousePos.y];
+    evt.preventDefault();
     strokeMove();
   });
   thing.addEventListener('mousedown', function(evt) {
+    debug.log('inputCatcher.mousedown');
     var mousePos = getMousePos(thing, evt);
     brush.pos = [mousePos.x, mousePos.y];
+    evt.preventDefault();
     strokeStart();
   });
   thing.addEventListener('mouseup', function(evt) {
+    debug.log('inputCatcher.mouseup');
     var mousePos = getMousePos(thing, evt);
     brush.pos = [mousePos.x, mousePos.y];
+    evt.preventDefault();
     strokeStop();
   });
 
   // mobile
   thing.addEventListener('touchmove', function(evt) {
+    debug.log('inputCatcher.touchmove');
     var mousePos = getMousePos(thing, evt);
     brush.pos = [mousePos.x, mousePos.y];
     evt.preventDefault();
     strokeMove();
   });
   thing.addEventListener('touchstart', function(evt) {
+    debug.log('inputCatcher.touchstart');
     var mousePos = getMousePos(thing, evt);
     brush.pos = [mousePos.x, mousePos.y];
     evt.preventDefault();
     strokeStart();
   });
   thing.addEventListener('touchend', function(evt) {
+    debug.log('inputCatcher.touchend');
     var mousePos = getMousePos(thing, evt);
     brush.pos = [mousePos.x, mousePos.y];
     evt.preventDefault();
@@ -71,26 +90,44 @@ function addInputEventListeners(thing) {
   });
 }
 
+function oddEventListeners() {
+  // ensure that brush is always 'deactivated'! :joy:
+  document.addEventListener('mouseup', function(evt) {
+    debug.log('document.mouseup');
+    evt.preventDefault();
+    strokeStop();
+  });
+  document.addEventListener('touchend', function(evt) {
+    debug.log('document.touchend');
+    evt.preventDefault();
+    strokeStop();
+  });
+}
+
+var lineStart; var lineStop;
+
 function strokeStart() {
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = '#000000';
+  ctx.lineJoin = 'round';
+
   brush.active = true;
   lineStart = brush.pos;
   lineStop = lineStart;
 }
 
 function strokeMove() {
-  ctx.lineWidth = 5;
-  ctx.strokeStyle = '#000000';
-  ctx.lineJoin = 'round';
+  if (brush.active) {
+    lineStop = brush.pos;
 
-  lineStop = brush.pos;
+    ctx.beginPath();
+    ctx.moveTo(...lineStart);
+    ctx.lineTo(...lineStop);
+    ctx.closePath();
+    ctx.stroke();
 
-  ctx.beginPath();
-  ctx.moveTo(...lineStart);
-  ctx.lineTo(...lineStop);
-  ctx.closePath();
-  ctx.stroke();
-
-  lineStart = lineStop;
+    lineStart = lineStop;
+  }
 }
 
 function strokeStop() {

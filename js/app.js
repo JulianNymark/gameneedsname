@@ -25,6 +25,7 @@ inputCatcher.setAttribute("class","input-catcher");
 document.body.appendChild(inputCatcher);
 
 addInputEventListeners(inputCatcher);
+oddEventListeners();
 
 // the brush 'entity' :::DDD
 var brush = {
