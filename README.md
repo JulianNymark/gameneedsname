@@ -1,2 +1,3 @@
+what used to be a template for making games has turned into a drawing app!
 
-A simple starting point for writing 2d games. See tutorial.md for more information.
+it should be so easy and self explanatory that i do-

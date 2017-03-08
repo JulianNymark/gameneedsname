@@ -94,12 +94,10 @@ function oddEventListeners() {
   // ensure that brush is always 'deactivated'! :joy:
   document.addEventListener('mouseup', function(evt) {
     debug.log('document.mouseup');
-    evt.preventDefault();
     strokeStop();
   });
   document.addEventListener('touchend', function(evt) {
     debug.log('document.touchend');
-    evt.preventDefault();
     strokeStop();
   });
 }

@@ -43,3 +43,7 @@ canvas, .input-catcher {
     display: block;
     cursor: crosshair;
 }
+
+button {
+    padding: 10px 20px;
+}

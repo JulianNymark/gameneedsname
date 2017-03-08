@@ -70,6 +70,11 @@ function update(dt) {
 };
 
 // Draw everything
+// this update + render loop thin is only really
+// when i decide to make more of a heavyweight 'brush engine'
+// interpolating curves between lines for smoothing
+// + stamping along the line, can use sprite.js for 'animated brushes'
+// though
 function render() {
   if (brush.active) {
     //renderEntity(brush);
